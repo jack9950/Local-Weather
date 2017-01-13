@@ -23,6 +23,16 @@ function getWeather(city, country_code) {
 
   .done(function (data){
     var fullResult = JSON.stringify(data);
+    var userCity = data.name;
+    var icon = data.weather[0].icon;
+    console.log(icon);
+    console.log(typeof(icon));
+    var temp_kelvin = data.main.temp;
+    var temp_celcius = temp_kelvin - 273;
+    var temp_fahrenheit = 9 / 5 * temp_celcius + 32;
+    $("#user-location").html(userCity);
+    $("#temperature").html(temp_fahrenheit + " &#8451");
+    $("#weather-icon").attr('src', 'http://openweathermap.org/img/w/' +icon +'.png');
     $("#apiCall").html(fullResult);
 
   })
@@ -59,6 +69,7 @@ function getLocation() {
     $("#userLocation").html(currentUserLocation);
 
     var city = data.city;
+    // var city = "Dallas"; //Testing Line
     var country_code = data.country;
 
     //When done, call the getWeather() function

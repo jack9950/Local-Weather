@@ -1,0 +1,16 @@
+{
+"coord":{"lon":-95.36,"lat":29.76},
+"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10n"}],
+"base":"stations",
+"main":{"temp":294.15,"pressure":1021,
+"humidity":82,
+"temp_min":293.15,"temp_max":295.15},
+"visibility":12874,
+"wind":{"speed":3.1,"deg":150},
+"clouds":{"all":1},
+"dt":1484270100,
+"sys":{"type":1,"id":2640,"message":0.0252,"country":"US","sunrise":1484313464,"sunset":1484350988},
+"id":4699066,
+"name":"Houston",
+"cod":200
+}

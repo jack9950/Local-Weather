@@ -1,3 +1,7 @@
-.container {
+.container-fluid {
   background: #ececea;
+}
+
+.centered-text {
+  text-align: center;
 }
