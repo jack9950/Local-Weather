@@ -1,7 +1,25 @@
+/*html {
+  background: url("icons/kZSin3aFWMM.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
+
 .container-fluid {
-  background: #ececea;
+  min-height: 960px;
+  /*background: url("icons/sky-1952136_640.jpg");*/
+  background: url("https://pixabay.com/get/e830b40a2ef2013ed1584d05fb094294e774e4d41eac10459df4c57caeeab3b8/wind-1555660_1280.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .centered-text {
   text-align: center;
+}
+
+.center {
+  margin: auto;
 }

@@ -1,50 +1,51 @@
+var fullResult;
+var userCity;
+var icon;
+var temp_kelvin;
+var temp_celcius;
+var temp_fahrenheit;
+var fahrenheit = true;
+
 $(document).ready(function() {
 
-  //Call getLocation() when the document is ready - to get the user location
-  //getLocation will also call the getWeather function to retrieve the actual weather
-  getLocation();
+  /******************************************************************************
+  Fetches the weather data from the OpenWeather api
+  This function will be called by the getLocation() function
+  *******************************************************************************/
+  function getWeather(city, country_code) {
 
-});
+    //OpenWeather api requires an APPID for all api calls.
+    var app_id = 'b295c087f2f1be435ff5341d0c5868de';
 
-//Fetches the weather data from the OpenWeather api
-//This function will be called by the getLocation() function
-function getWeather(city, country_code) {
+    $.ajax({
+      url: 'http://api.openweathermap.org/data/2.5/weather',
+      data: {
+        q: city + ',' + country_code,
+        APPID: app_id
+      }
+    })
 
-  //OpenWeather api requires an APPID for all api calls.
-  var app_id = 'b295c087f2f1be435ff5341d0c5868de';
+    .done(function (data){
+      fahrenheit = true;
+      //fullResult = JSON.stringify(data);
+      userCity = data.name;
+      icon = data.weather[0].icon;
+      temp_kelvin = data.main.temp;
+      temp_celcius = temp_kelvin - 273;
+      temp_fahrenheit = 9 / 5 * temp_celcius + 32;
 
-  $.ajax({
-    url: 'http://api.openweathermap.org/data/2.5/weather',
-    data: {
-      q: city + ',' + country_code,
-      APPID: app_id
-    }
-  })
+      $("#user-location").html(userCity);
+      $("#temperature").html(parseInt(temp_fahrenheit) + " &#8457");
+      $("#weather-icon").attr('src', 'http://openweathermap.org/img/w/' +icon +'.png');
+      //$("#apiCall").html(fullResult);
 
-  .done(function (data){
-    var fullResult = JSON.stringify(data);
-    var userCity = data.name;
-    var icon = data.weather[0].icon;
-    console.log(icon);
-    console.log(typeof(icon));
-    var temp_kelvin = data.main.temp;
-    var temp_celcius = temp_kelvin - 273;
-    var temp_fahrenheit = 9 / 5 * temp_celcius + 32;
-    $("#user-location").html(userCity);
-    $("#temperature").html(temp_fahrenheit + " &#8451");
-    $("#weather-icon").attr('src', 'http://openweathermap.org/img/w/' +icon +'.png');
-    $("#apiCall").html(fullResult);
+    })
+    .fail(function (err) {
+      alert("It failed");
+    });
+  };
 
-  })
-  .fail(function (err) {
-    alert("It failed");
-  });
-};
-
-
-function getLocation() {
-
-  /*
+  /******************************************************************************
   - We will use the ipinfo api, which returns json in the form:
   - Assuming the call was http://ipinfo.io?dataType=jsonp, will return:
   {
@@ -57,27 +58,53 @@ function getLocation() {
   "org": "AS15169 Google Inc.",
   "postal": "94035"
   }
-  */
-  $.ajax({
-    url: 'http://ipinfo.io',
-    dataType: 'jsonp',
-  })
+  ******************************************************************************/
+  function getLocation() {
 
-  .done(function (data) { //I should probably use "success" here rather than ".done"
-                          // Need to look into this!
-    var currentUserLocation = JSON.stringify(data);
-    $("#userLocation").html(currentUserLocation);
 
-    var city = data.city;
-    // var city = "Dallas"; //Testing Line
-    var country_code = data.country;
+    $.ajax({
+      url: 'http://ipinfo.io',
+      dataType: 'jsonp',
+    })
 
-    //When done, call the getWeather() function
-    getWeather(city, country_code);
-  })
+    .done(function (data) { //I should probably use "success" here rather than ".done"
+      // Need to look into this!
+      var currentUserLocation = JSON.stringify(data);
+      //$("#userLocation").html(currentUserLocation);
 
-  .fail(function(err) {
-    $("#userLocation").html("The request to get the user location failed! Bleah!");
-  })
+      var city = data.city;
+      // var city = "Dallas"; //Testing Line
+      var country_code = data.country;
 
-};
+      //When done, call the getWeather() function
+      getWeather(city, country_code);
+    })
+
+    .fail(function(err) {
+      //$("#userLocation").html("The request to get the user location failed! Bleah!");
+    })
+
+  };
+  /*****************************************************************************
+  changeUnits will be called when the user wants to change the units
+  *****************************************************************************/
+  function changeUnits (tempF) {
+    if (fahrenheit) {
+      $("#temperature").html(parseInt(temp_celcius) + " &#8451");
+      $("#changeUnits").html("change to &#8457");
+      fahrenheit = false;
+    }else {
+      $("#temperature").html(parseInt(temp_fahrenheit) + " &#8457");
+      $("#changeUnits").html("change to &#8451");
+      fahrenheit = true;
+    }
+  }
+
+  //Call getLocation() when the document is ready - to get the user location
+  //getLocation will also call the getWeather function to retrieve the actual weather
+  getLocation();
+
+  //this is called if the user clicks the change units button
+  $("#changeUnits").on("click", changeUnits);
+
+});
