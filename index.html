@@ -13,19 +13,23 @@
 
   <body>
     <div class="container-fluid">
-        <div class="row centered-text">
-          <div><h1>Local Weather</h1></div>
-          <div id="user-location">User city</div>
-        </div>
-        <div class="row centered-text">
-          <div >
-            <span id="temperature">Temp goes here</span>
+        <header class="row centered-text">
+            <div class="app-name">Local Weather</div>
+        </header>
+
+        <section class="row centered-text">
+          <div class="user-city" id="user-location"></div>
+            <div >
+              <span class="localTemperature" id="temperature"></span><span class="units" id=tempUnits></span>
+            </div>
             <img id="weather-icon" src="">
-          </div>
-        </div>
+        </section>
+
         <div class="row ">
-              <button id="changeUnits" class="btn btn-primary btn-sm center-block">Change to &#8451</button>
+          <button id="changeUnits" class="btn btn-primary btn-sm center-block btn-alt">&#8451</button>
         </div>
+
+        <footer>Coded by yours truly Jackson Ndiho</footer>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

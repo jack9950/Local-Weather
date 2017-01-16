@@ -35,7 +35,8 @@ $(document).ready(function() {
       temp_fahrenheit = 9 / 5 * temp_celcius + 32;
 
       $("#user-location").html(userCity);
-      $("#temperature").html(parseInt(temp_fahrenheit) + " &#8457");
+      $("#temperature").html( parseInt(temp_fahrenheit) );
+      $("#tempUnits").html(" &#8457");
       $("#weather-icon").attr('src', 'http://openweathermap.org/img/w/' +icon +'.png');
       //$("#apiCall").html(fullResult);
 
@@ -90,12 +91,14 @@ $(document).ready(function() {
   *****************************************************************************/
   function changeUnits (tempF) {
     if (fahrenheit) {
-      $("#temperature").html(parseInt(temp_celcius) + " &#8451");
-      $("#changeUnits").html("change to &#8457");
+      $("#temperature").html( parseInt(temp_celcius) );
+      $("#tempUnits").html(" &#8451");
+      $("#changeUnits").html("&#8457");
       fahrenheit = false;
     }else {
-      $("#temperature").html(parseInt(temp_fahrenheit) + " &#8457");
-      $("#changeUnits").html("change to &#8451");
+      $("#temperature").html( parseInt(temp_fahrenheit) );
+      $("#tempUnits").html(" &#8457");
+      $("#changeUnits").html("&#8451");
       fahrenheit = true;
     }
   }

@@ -1,19 +1,46 @@
-/*html {
-  background: url("icons/kZSin3aFWMM.jpg");
+html, body {
+  height: 100%;
+}
+
+body {
+  background: url("http://res.cloudinary.com/jack9950/image/upload/v1484536925/beach-1838813_1920_b0ltpy.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}*/
+}
+
+.app-name {
+  font-size: 48px;
+  letter-spacing: 1.5 px;
+  padding-top: 100px;
+  padding-bottom: 25px;
+}
+
+.user-city {
+  font-size: 40px;
+  /*padding-top: 50px;
+  padding-bottom: 25px;*/
+}
+
+.localTemperature {
+  font-size: 40px;
+}
+
+.units {
+  font-size: 38px;
+}
+
+img {
+  display: block;
+  margin: 10px auto;
+}
 
 .container-fluid {
-  min-height: 960px;
+  /*min-height: 960px;*/
+  height: 100%;
   /*background: url("icons/sky-1952136_640.jpg");*/
-  background: url("https://pixabay.com/get/e830b40a2ef2013ed1584d05fb094294e774e4d41eac10459df4c57caeeab3b8/wind-1555660_1280.jpg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
 }
 
 .centered-text {
@@ -23,3 +50,48 @@
 .center {
   margin: auto;
 }
+
+.btn {
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  /*display: inline-block;*/
+  font-weight: 400;
+  letter-spacing: .5px;
+  /*margin: 0;*/
+  /*text-transform: uppercase;*/
+}
+.btn-alt {
+  /*border: 1px solid #fff;*/
+  /*padding: 10px 30px;*/
+}
+.btn-alt:hover {
+  background: #9cf;
+  /*color: #648880;*/
+  /*color: #648880;*/
+}
+
+footer {
+  position: absolute;
+  font-size: 14px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  background: #9aa2af;
+  /*background: linear-gradient(#648880, #293f50);*/
+  background: linear-gradient(#DFEBF0, #BBC6C9);
+
+}
+
+/*.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}*/
